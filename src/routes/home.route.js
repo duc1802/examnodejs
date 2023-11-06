@@ -8,7 +8,7 @@ router.get('/add', (req, res) => {
   
 router.post('/add', productController.addProduct);
 
-router.delete('/:id', productController.deleteProduct);
+router.get('/products/delete/:id', productController.deleteProduct);
 
 router.get('/products', productController.getProductList);
 

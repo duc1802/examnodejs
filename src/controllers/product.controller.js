@@ -17,14 +17,20 @@ exports.addProduct = async (req, res) => {
 };
 
 exports.deleteProduct = (req, res) => {
-    productModel.findByIdAndRemove(req.params.id, (err, product) => {
-    if (err) {
-      res.status(500).json({ error: 'Error deleting product' });
-    } else {
-      res.json({ message: 'Product deleted successfully' });
-    }
-  });
+    console.log(req.params.id);
+    productModel.findByIdAndDelete(req.params.id)
+        .then((product) => {
+            if (!product) {
+                res.status(404).json({ error: 'Product not found' });
+            } else {
+                res.json({ message: 'Product deleted successfully' });
+            }
+        })
+        .catch((err) => {
+            res.status(500).json({ error: 'Error deleting product' });
+        });
 };
+
 
 exports.getProductList = (req, res) => {
     productModel.find({})
