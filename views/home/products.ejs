@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <div class="container">
+        <h1>Product List</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Product Code</th>
+                <th>Product Name</th>
+                <th>Product Date</th>
+                <th>Product Origin Price</th>
+                <th>Quantity</th>
+                <th>Product Store Code</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% products.forEach(function(product) { %>
+                <tr>
+                <td><%= product.ProductCode %></td>
+                <td><%= product.ProductName %></td>
+                <td><%= product.ProductDate %></td>
+                <td><%= product.ProductOriginPrice %></td>
+                <td><%= product.Quantity %></td>
+                <td><%= product.ProductStoreCode %></td>
+                <td>
+                    <a href="/api/products/<%= product._id %>" class="btn btn-danger">Delete</a>
+                </td>
+                </tr>
+            <% }); %>
+            </tbody>
+        </table>
+        </div>
+  </body>
+</html>
