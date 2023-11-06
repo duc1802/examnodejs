@@ -2,7 +2,11 @@ const express = require('express');
 const router = express.Router();
 const productController = require('./../controllers/product.controller');
 
-router.post('/', productController.addProduct);
+router.get('/add', (req, res) => {
+    res.render('addproducts');
+});
+  
+router.post('/add', productController.addProduct);
 
 router.delete('/:id', productController.deleteProduct);
 

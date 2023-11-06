@@ -1,22 +1,45 @@
 const Product = require('../models/product.model');
 
-exports.addProduct = (req, res) => {
-  const newProduct = new Product({
-    ProductCode: req.body.ProductCode,
-    ProductName: req.body.ProductName,
-    ProductDate: new Date(req.body.ProductDate),
-    ProductOriginPrice: parseFloat(req.body.ProductOriginPrice),
-    Quantity: parseInt(req.body.Quantity),
-    ProductStoreCode: req.body.ProductStoreCode,
-  });
+exports.getAddProductPage = (req, res) => {
+    res.render('addproduct');
+  };
 
-  newProduct.save((err) => {
-    if (err) {
-      res.status(500).json({ error: 'Error adding product' });
-    } else {
+  exports.addProduct = async (req, res) => {
+    try {
+      const newProduct = new Product({
+        ProductCode: req.body.ProductCode,
+        ProductName: req.body.ProductName,
+        ProductDate: new Date(req.body.ProductDate),
+        ProductOriginPrice: parseFloat(req.body.ProductOriginPrice),
+        Quantity: parseInt(req.body.Quantity),
+        ProductStoreCode: req.body.ProductStoreCode,
+      });
+  
+      await newProduct.save();
+  
       res.json({ message: 'Product added successfully' });
-    }
-  });
+    } catch (err) {
+      res.status(500).json({ error: 'Error adding product' });
+    }  
+};
+
+exports.addProduct = async (req, res) => {
+  try {
+    const newProduct = new Product({
+      ProductCode: req.body.ProductCode,
+      ProductName: req.body.ProductName,
+      ProductDate: new Date(req.body.ProductDate),
+      ProductOriginPrice: parseFloat(req.body.ProductOriginPrice),
+      Quantity: parseInt(req.body.Quantity),
+      ProductStoreCode: req.body.ProductStoreCode,
+    });
+
+    await newProduct.save();
+
+    res.json({ message: 'Product added successfully' });
+  } catch (err) {
+    res.status(500).json({ error: 'Error adding product' });
+  }
 };
 
 exports.deleteProduct = (req, res) => {

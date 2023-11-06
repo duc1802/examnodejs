@@ -8,7 +8,7 @@ app.listen(port,function(){
     console.log("Server is running...");
 })
 
-app.set('views', 'D:/nodejs/examnodejs/views');
+app.set('views', 'D:/nodejs/examnodejs/views/home');
 app.set("view engine","ejs");
 app.use(express.static("public"));
 app.use(express.json());
